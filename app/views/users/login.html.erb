@@ -1,0 +1,22 @@
+<div class='row'>
+  <div class="span4 offset4">
+    <div class="well">
+
+      <%= form_tag :action=> "login" do %>
+
+        <h2><%= "Login" %></h2>
+        
+        <div id="flash"></div>
+
+        <%= text_field(:user, :login, :placeholder => "login")%>  
+        
+        <%= password_field(:user, :password,  :placeholder => "password")%>
+        
+        <input type="submit" name="login" class="btn btn-info" value= "<%= ('Login') %>" />
+        <%= check_box_tag 'remember_me' %> <small><%= ('Remember me')%></small> 
+
+      <% end %>
+
+    </div>
+  </div>
+</div>
