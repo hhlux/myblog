@@ -1,4 +1,9 @@
 Myblog::Application.routes.draw do
+
+  root :to  => 'articles#index'
+
+  get "articles/index"
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
