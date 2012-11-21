@@ -6,9 +6,12 @@
 
         <h2><%= "Login" %></h2>
         
-        <div id="flash"></div>
+        <div class="alert">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <%= flash[:error] %>
+        </div>
 
-        <%= text_field(:user, :login, :placeholder => "login")%>  
+        <%= text_field(:user, :username, :placeholder => "login")%>  
         
         <%= password_field(:user, :password,  :placeholder => "password")%>
         

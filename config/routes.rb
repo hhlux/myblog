@@ -3,6 +3,7 @@ Myblog::Application.routes.draw do
   root :to  => 'articles#index'
 
   get "articles/index"
+  get "admin/dashboard"
 
   match "admin" , :to => "users#login"
   
