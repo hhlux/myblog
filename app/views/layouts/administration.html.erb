@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>myblog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <%= link_to "MYBLOG", '#', id: "logo" %>
+          <nav>
+            <ul class="nav pull-right">
+              <li><%= link_to "首页",    '#' %></li>
+              <li><%= link_to "Logout", :controller => 'users', :action => 'logout' %></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <div class="container-fluid">
+
+      <div class="row-fluid">
+
+        <div class="span2">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Articles</li>
+              <li class="active"><a href="#">所有文章</a></li>
+              <li><a href="#">评论</a></li>
+              <li><a href="#">文章类别</a></li>
+              <li class="nav-header">用户</li>
+              <li><a href="#">管理员</a></li>
+              <li class="nav-header">设置</li>
+              <li><a href="#">通用设置</a></li>
+            </ul>
+          </div><!--/well -->
+        </div><!--/span-->
+
+        <div class="span10">
+          <%= yield %>
+          <!--<%= debug(params) if Rails.env.development? %>-->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

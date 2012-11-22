@@ -1,5 +1,7 @@
 class Admin::UsersController < ApplicationController
 
+	layout "administration"
+
 	def login
 
 		if request.post?
