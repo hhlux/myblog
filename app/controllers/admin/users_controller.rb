@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
 
-	layout "administration"
+	layout "administration", :except => [:login, :logout]
 
 	def login
 
@@ -12,7 +12,6 @@ class Admin::UsersController < ApplicationController
 			else
 				flash.now[:error]  = "Login unsuccessful"
 			end
-			
 		end
 	end
 

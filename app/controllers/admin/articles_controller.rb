@@ -8,7 +8,9 @@ class Admin::ArticlesController < ApplicationController
 	end
 
 	def new
-		
+		if request.get?
+			render "new"
+		end
 	end
 
 end

@@ -8,6 +8,8 @@ Myblog::Application.routes.draw do
 
   get "admin/users/logout"
   get "admin/articles/index"
+  get "admin/articles/new"
+  get "admin/categories/index"
 
   
   
