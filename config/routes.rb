@@ -1,11 +1,17 @@
 Myblog::Application.routes.draw do
 
-  root :to  => 'articles#index'
+  root :to => 'articles#index'
+
+  match "admin" => "admin/users#login"
 
   get "articles/index"
-  get "admin/dashboard"
 
-  match "admin" , :to => "users#login"
+  get "admin/users/logout"
+  get "admin/articles/index"
+
+  
+  
+
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,3 +1,4 @@
+<div class='container'>
 <div class='row'>
   <div class="span4 offset4">
     <div class="well">
@@ -7,15 +8,22 @@
         <h2><%= "Login" %></h2>
         
         <% if flash[:error] %>
-        <div class="alert">
+        
+        <div class="alert alert-error">
+          <button type="button" class="close" data-dismiss="alert">x</button>
+          <p><%= flash[:error] %></p>
+        </div>
+      
+        <% elsif flash[:notice] %>
+        <div class="alert alert-success">
           <button type="button" class="close" data-dismiss="alert">×</button>
-          <%= flash[:error] %>
+          <p><%= flash[:notice] %></p>
         </div>
         <% end %>
-
-        <%= text_field(:user, :username, :placeholder => "login")%>  
         
-        <%= password_field(:user, :password,  :placeholder => "password")%>
+        <%= text_field(:user, :username, :placeholder => "login")%>
+        
+        <%= password_field(:user, :password, :placeholder => "password")%>
         
         <input type="submit" name="login" class="btn btn-info" value= "<%= ('Login') %>" />
         <%= check_box_tag 'remember_me' %> <small><%= ('Remember me')%></small> 
@@ -24,4 +32,5 @@
 
     </div>
   </div>
+</div>
 </div>
