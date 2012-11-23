@@ -1,5 +1,7 @@
 Myblog::Application.routes.draw do
 
+  get "comments/index"
+
   root :to => 'articles#index'
 
   match "admin" => "admin/users#login"
@@ -10,6 +12,9 @@ Myblog::Application.routes.draw do
   get "admin/articles/index"
   get "admin/articles/new"
   get "admin/categories/index"
+  get "admin/comments/index"
+
+  post "admin/categories/new"
 
   
   

@@ -30,24 +30,49 @@
 
         <div class="span2">
           <div class="well sidebar-nav">
-            <ul class="nav nav-list">
+            <ul class="nav nav-list" id="sidebar">
               <li class="nav-header">文章</li>
-              <li class="active"><a href="#">所有文章</a></li>
-              <li><a href="#">评论</a></li>
-              <li><%= link_to "文章分类", :controller => 'categories', :action => 'index' %></li>
+              <li id="sidebar_articles"><a href="/admin/articles/index">所有文章</a></li>
+              <li id="sidebar_comments"><a href="/admin/comments/index">评论</a></li>
+              <li id="sidebar_categories"><%= link_to "文章分类", :controller => 'categories', :action => 'index' %></li>
               <li class="nav-header">用户</li>
-              <li><a href="#">管理员</a></li>
+              <li id="administrator"><a href="#">管理员</a></li>
               <li class="nav-header">设置</li>
-              <li><a href="#">通用设置</a></li>
+              <li id="settings"><a href="#">通用设置</a></li>
             </ul>
           </div><!--/well -->
         </div><!--/span-->
 
+
+
         <div class="span10">
           <%= yield %>
-          <!--<%= debug(params) if Rails.env.development? %>-->
+          <%= debug(params) if Rails.env.development? %>
         </div>
       </div>
     </div>
   </body>
 </html>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  /*
+  $("#sidebar li").each(function(){
+    $(this).click(function(){
+      $("#sidebar li.active:first").removeClass("active");
+      $(this).addClass("active");
+    });
+  });
+  */
+  controller = "<%=params[:controller]%>";
+
+  $("#sidebar li.active:first").removeClass("active");
+  
+  switch (controller) {
+
+    case "admin/articles": $("#sidebar_articles").addClass("active"); break;
+    case "admin/comments": $("#sidebar_comments").addClass("active"); break;
+    case "admin/categories": $("#sidebar_categories").addClass("active"); break;
+  }
+});
+</script>

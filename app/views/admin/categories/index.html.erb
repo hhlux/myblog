@@ -1,5 +1,30 @@
 <div class='page-header'>
-  <h2>Manage Categories
-    
-  </h2>
+  <h2>Manage Categories</h2>
 </div>
+
+<%= form_for(Category.new, :url => "new", :html => { :class => "form-inline"}) do |f| %>
+  <%= f.label '新增文章分类：' %>
+  <%= f.text_field :name, :class => "input-large", :placeholder=>"请输入名称" %>
+  <%= f.submit "提交", :class=> "btn btn-primary" %>
+  <%=flash[:notice]%>
+<% end %>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th>名称</th>
+        <th>文章数量</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for category in @categories %>
+      <tr>
+        <td><%= category.name %></td>
+        <td>2</td>
+        <td><a href="#"><i class="icon-pencil"></i></a>&nbsp;&nbsp;
+            <a href="#"><i class="icon-trash"></i></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
