@@ -16,10 +16,14 @@ class Admin::CategoriesController < ApplicationController
     else
       flash[:error] = "Created category failed"
     end
-    
+
     redirect_to :action => "index"
   end
 
+  def edit
+  end
 
+  def delete
+  end
 
 end
