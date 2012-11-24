@@ -31,30 +31,53 @@
     <tbody>
       <% for category in @categories %>
       <tr>
-        <td><%= category.name %></td>
-        <td>2</td>
-        <td><a href="#myModal" data-toggle="modal"><i class="icon-pencil"></i></a>&nbsp;&nbsp;
-            <a href="delete" data-toggle="modal"><i class="icon-trash"></i>
-              <a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a></td>
+        <td name="show_<%=category.id%>"><%= category.name %></td>
+        <td name="show_<%=category.id%>">2</td>
+        <td name="show_<%=category.id%>"><a href="#"><i name="<%=category.id%>" class="icon-pencil"></i></a>&nbsp;&nbsp;
+            <a href="delete/<%=category.id%>"><i class="icon-trash"></i>
+            </td>
+        <td name="edit_<%=category.id%>" colspan='3'>
+          <div class='input-append'>
+            <input class='span3' type='text' value='<%=category.name%>'/>
+            <button class='btn btn-primary' type='button'>保存</button>
+            <button class='btn' type='button' name='cancel_button'>取消</button>
+          </div>
+        </td>
       </tr>
       <% end %>
     </tbody>
   </table>
 
-<!-- Button to trigger modal -->
-<a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
- 
-<!-- Modal -->
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Modal header</h3>
-  </div>
-  <div class="modal-body">
-    <p>One fine body…</p>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Save changes</button>
-  </div>
-</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  
+  // 页面初始化时隐藏编辑表单
+  $("td[name^='edit']").hide();
+  
+  // 点击编辑按钮，显示编辑表单
+  $(".icon-pencil").click(function(){
+
+    var category_id = $(this).attr("name");
+
+    $(this).parent().parent().parent().children("td:lt(4)").hide();
+    $(this).parent().parent().parent().children("td:last").show();
+
+  });
+
+  // 点击编辑表单上的取消按钮，隐藏编辑表单
+  $("button[name='cancel_button']").click(function(){
+    
+    $(this).parent().parent().parent().children("td:lt(4)").show();
+    $(this).parent().parent().parent().children("td:last").hide();
+
+  });
+});
+
+
+
+function cancel_edit() {
+    alert("ok");
+    //$(this).parent().parent().parent().html(show_line);
+  }
+</script>

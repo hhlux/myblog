@@ -24,6 +24,15 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def delete
+    category = Category.destroy(params[:id])
+    
+    if category.destroy
+      flash[:notice] = "Delete category successful"
+    else
+      flash[:error] = "Delete category failed"
+    end
+
+    redirect_to :action => "index"
   end
 
 end

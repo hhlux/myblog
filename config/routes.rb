@@ -16,6 +16,8 @@ Myblog::Application.routes.draw do
 
   post "admin/categories/new"
 
+  match 'admin/categories/delete/:id' => 'admin/categories#delete'
+
   
   
 
