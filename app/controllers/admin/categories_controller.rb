@@ -20,7 +20,14 @@ class Admin::CategoriesController < ApplicationController
     redirect_to :action => "index"
   end
 
-  def edit
+  def update
+    category = Category.find(params[:category][:id])
+    if category.update_attributes(params[:category])
+      flash[:notice] = "Update category successful"
+    else
+      flash[:error] = "Update category failed"
+    end
+    redirect_to :action => "index"
   end
 
   def delete

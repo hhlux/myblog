@@ -15,8 +15,11 @@ Myblog::Application.routes.draw do
   get "admin/comments/index"
 
   post "admin/categories/new"
+  put "admin/categories/update"
 
   match 'admin/categories/delete/:id' => 'admin/categories#delete'
+  match 'admin/categories/update/:id' => 'admin/categories#update'
+
 
   
   

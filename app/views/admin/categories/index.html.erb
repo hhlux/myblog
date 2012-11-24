@@ -31,34 +31,32 @@
     <tbody>
       <% for category in @categories %>
       <tr>
-        <td name="show_<%=category.id%>"><%= category.name %></td>
-        <td name="show_<%=category.id%>">2</td>
-        <td name="show_<%=category.id%>"><a href="#"><i name="<%=category.id%>" class="icon-pencil"></i></a>&nbsp;&nbsp;
+        <td><%= category.name %></td>
+        <td>2</td>
+        <td><a href="#"><i class="icon-pencil"></i></a>&nbsp;&nbsp;
             <a href="delete/<%=category.id%>"><i class="icon-trash"></i>
             </td>
-        <td name="edit_<%=category.id%>" colspan='3'>
-          <div class='input-append'>
-            <input class='span3' type='text' value='<%=category.name%>'/>
-            <button class='btn btn-primary' type='button'>保存</button>
-            <button class='btn' type='button' name='cancel_button'>取消</button>
-          </div>
+        <td name="edit_td" colspan='3'>
+          <%= form_for(category, :url=>"update", :html => {:class=>"input-append"}) do |f| %>
+            <%= f.hidden_field :id %>
+            <%= f.text_field :name, :class => "span3" %>
+            <%= f.submit "提交", :class=> "btn btn-primary" %>
+            <button name="cancel_button" class="btn" type="button">取消</button>
+          <% end %>
         </td>
       </tr>
       <% end %>
     </tbody>
   </table>
 
-
 <script type="text/javascript">
 $(document).ready(function(){
   
   // 页面初始化时隐藏编辑表单
-  $("td[name^='edit']").hide();
+  $("td[name='edit_td']").hide();
   
   // 点击编辑按钮，显示编辑表单
   $(".icon-pencil").click(function(){
-
-    var category_id = $(this).attr("name");
 
     $(this).parent().parent().parent().children("td:lt(4)").hide();
     $(this).parent().parent().parent().children("td:last").show();
