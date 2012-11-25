@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.2.8'
-#gem 'bootstrap-sass', '2.2.1.0'
+gem 'bootstrap-sass', '2.2.1.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -21,7 +21,7 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'twitter-bootstrap-rails'
+  #gem 'twitter-bootstrap-rails'
 end
 
 gem 'jquery-rails'
@@ -29,6 +29,10 @@ gem 'jquery-rails'
 group :production do
   gem 'pg', '0.12.2'
 end
+
+gem 'will_paginate'
+
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

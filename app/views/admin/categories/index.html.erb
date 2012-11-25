@@ -36,46 +36,78 @@
         <td><a href="#"><i class="icon-pencil"></i></a>&nbsp;&nbsp;
             <a href="delete/<%=category.id%>"><i class="icon-trash"></i>
             </td>
-        <td name="edit_td" colspan='3'>
-          <%= form_for(category, :url=>"update", :html => {:class=>"input-append"}) do |f| %>
-            <%= f.hidden_field :id %>
-            <%= f.text_field :name, :class => "span3" %>
-            <%= f.submit "提交", :class=> "btn btn-primary" %>
+        <td id="edit_td_<%=category.id%>" colspan='3'>
+          <form id="edit_form" class="input-append">
+            <input name="id" type="hidden" value="<%=category.id%>"/>
+            <input id="category_name" name="name" type="text" class="span3" value="<%=category.name%>"/>
+            <button type="submit" class="btn btn-primary">提交</button>
             <button name="cancel_button" class="btn" type="button">取消</button>
-          <% end %>
+          </form>
         </td>
       </tr>
       <% end %>
     </tbody>
   </table>
+  
 
 <script type="text/javascript">
 $(document).ready(function(){
   
   // 页面初始化时隐藏编辑表单
-  $("td[name='edit_td']").hide();
+  $("td[id^='edit_td_']").hide();
   
   // 点击编辑按钮，显示编辑表单
   $(".icon-pencil").click(function(){
 
-    $(this).parent().parent().parent().children("td:lt(4)").hide();
-    $(this).parent().parent().parent().children("td:last").show();
+    $(this).parent().parent().prevAll().andSelf().hide();
+    $(this).parent().parent().next().show();
+    $(this).parent().parent().next().find("input#category_name").focus();
 
   });
 
   // 点击编辑表单上的取消按钮，隐藏编辑表单
   $("button[name='cancel_button']").click(function(){
     
-    $(this).parent().parent().parent().children("td:lt(4)").show();
-    $(this).parent().parent().parent().children("td:last").hide();
+    $(this).parent().parent().prevAll().show();
+    $(this).parent().parent().hide();
 
   });
+
+  // 编辑 AJAX
+  $('#edit_form').submit(function(e){
+
+    $.ajax({
+
+      type: "post",
+
+      url: "update",
+
+      data: $(this).serialize(),
+
+      dataType: "json",
+
+      beforeSend: function(XMLHttpRequest){
+
+      },
+
+      success: function(data, textStatus){
+
+        var edit_td = $("#edit_td_" + data.id);
+
+        edit_td.hide();
+        edit_td.prev().prev().prev().html(data.name)
+        edit_td.prevAll().show();
+      },
+
+      error: function(){
+
+      },
+
+      complete: function(XMLHttpRequest, textStatus){
+
+      }
+    });
+    return false;
+  });
 });
-
-
-
-function cancel_edit() {
-    alert("ok");
-    //$(this).parent().parent().parent().html(show_line);
-  }
 </script>

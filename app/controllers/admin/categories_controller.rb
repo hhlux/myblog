@@ -10,7 +10,7 @@ class Admin::CategoriesController < ApplicationController
 
   def new
     category = Category.new(params[:category])
-
+    logger.warn 'newing--------ciying'
     if category.save
       flash[:notice] = "Create category successful"
     else
@@ -21,13 +21,20 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def update
-    category = Category.find(params[:category][:id])
-    if category.update_attributes(params[:category])
-      flash[:notice] = "Update category successful"
-    else
-      flash[:error] = "Update category failed"
+    #category = Category.find(params[:id])
+    
+    #category.update_attributes(:name =>params[:name])
+    category = Category.find(params[:id])
+    category.name = params[:name]
+    category.save
+
+    logger.warn "updating----------------------------ciying"
+    
+    respond_to do |format|
+      format.html
+      format.js { render :layout => false}
+      format.json {render :json => category.to_json}
     end
-    redirect_to :action => "index"
   end
 
   def delete
