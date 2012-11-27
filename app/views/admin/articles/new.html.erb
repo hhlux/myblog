@@ -12,10 +12,11 @@
 
 <div class='page-header'>
 	<h2>New Article</h2>
-	
 </div>
 
-<%= form_for(Article.new, :url=>"new", :html=>{:class=>"form-horizontal"}) do |f| %>
+<%= form_for(@article, :url=>"/admin/articles/new", :html=>{:class=>"form-horizontal"}, :method => "post") do |f| %>
+  
+  <%=f.hidden_field :id %>
   <div class="control-group">
     <label class="control-label" for="title">文章标题：</label>
     <div class="controls">
@@ -37,14 +38,14 @@
 
   <div class="control-group">
     <div class="controls">
-      <textarea rows="20" name="article[content]" class="span9"></textarea>
+      <textarea rows="20" name="article[content]" class="span9"><%=@article.content%></textarea>
     </div>
   </div>
 
   <div class="control-group">
     <div class="controls">
-      <button type="submit" class="btn">保存草稿</button>
-      <button type="submit" class="btn btn-primary">发布</button>
+      <button type="submit" class="btn" name="article[published]" value="0">保存草稿</button>
+      <button type="submit" class="btn btn-primary" name="article[published]" value="1">发布</button>
     </div>
   </div>
 <%end%>

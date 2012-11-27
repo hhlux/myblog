@@ -7,20 +7,30 @@
   </h2>
 </div>
 
-<table class="table">
+<table class="table table-hover">
     <thead>
       <tr>
         <th>标题</th>
+        <th>分类</th>
         <th>状态</th>
         <th>日期</th>
+        <th>操作</th>
       </tr>
     </thead>
     <tbody>
       <% for article in @articles %>
       <tr>
         <td><%= article.title %></td>
-        <td><%= article.published %></td>
-        <td><%= article.published_at %></td>
+        <td><%= article.category.name unless article.category == nil %></td>
+        <td><% if article.published == 1 %>
+          <span class="label label-info">已发布</span>
+          <% elsif article.published == 0 %>
+          <span class="label label-success">草稿</span>
+          <%end%>
+          </td>
+        <td><%= l article.updated_at,:format=>"%Y-%m-%d" %></td>
+        <td><a href="edit/<%=article.id%>"><i class="icon-pencil"></i></a>&nbsp;&nbsp;
+            <a href="destroy/<%=article.id%>"><i class="icon-trash"></td>
       </tr>
       <% end %>
     </tbody>

@@ -20,6 +20,8 @@ Myblog::Application.routes.draw do
 
   match 'admin/categories/delete/:id' => 'admin/categories#delete'
   match 'admin/categories/update/:id' => 'admin/categories#update'
+  match 'admin/articles/destroy/:id' => 'admin/articles#destroy'
+  match 'admin/articles/edit/:id' => 'admin/articles#edit'
 
 
   

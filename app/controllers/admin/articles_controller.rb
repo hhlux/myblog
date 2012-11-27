@@ -5,30 +5,62 @@ class Admin::ArticlesController < ApplicationController
 	layout "administration"
 
 	def index
-    @articles = Article.all
+    @articles = Article.all(:include => [:category])
 	end
 
 	def new
-		if request.get?
+		new_or_edit
+	end
+
+  def edit
+    new_or_edit
+  end
+
+  def destroy
+
+    if Article.destroy(params[:id])
+      flash[:notice] = "Delete category successful"
+    else
+      flash[:error] = "Delete category failed"
+    end
+
+    redirect_to :action => "index"
+  end
+
+  def new_or_edit
+
+    # 显示新建或编辑画面
+    if request.get?
+
       @categories = Category.all
-			render "new"
+      
+      if params[:id] 
+        @article = Article.find(params[:id])
+      else
+        @article = Article.new
+      end
+
+      render "new"
 
     elsif request.post?
 
-      category = Category.find(params[:category_id])
+      # 更新操作
+      if params[:article][:id] != ""
+        article = Article.find(params[:article][:id])
+        article.update_attributes(params[:article])
 
-      article = Article.new(params[:article])
-      article.category = category
-
-
-      if article.save
-        flash[:notice] = "Create article successful"
+      # 新建操作
       else
-        flash[:error] = "Created article failed"
+
+        category = Category.find(params[:category_id])
+
+        article = Article.new(params[:article])
+        article.category = category
+        article.save
       end
 
-    redirect_to :action => "index"
-		end
-	end
+      redirect_to :action => "index"
+    end
+  end
 
 end
