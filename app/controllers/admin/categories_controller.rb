@@ -27,8 +27,6 @@ class Admin::CategoriesController < ApplicationController
     category = Category.find(params[:id])
     category.name = params[:name]
     category.save
-
-    logger.warn "updating----------------------------ciying"
     
     respond_to do |format|
       format.html

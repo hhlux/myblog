@@ -7,5 +7,6 @@ class Admin::CommentsController < ApplicationController
   end
   
   def create
+  	
   end
 end
