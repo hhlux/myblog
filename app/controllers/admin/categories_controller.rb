@@ -10,7 +10,7 @@ class Admin::CategoriesController < ApplicationController
 
   def new
     category = Category.new(params[:category])
-    logger.warn 'newing--------ciying'
+    
     if category.save
       flash[:notice] = "Create category successful"
       redirect_to :action => "index"

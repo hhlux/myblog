@@ -7,6 +7,9 @@ Myblog::Application.routes.draw do
   match "admin" => "admin/users#login"
 
   get "articles/index"
+  get "articles/view"
+
+  post "comments/create"
   post "admin/categories/new"
   post "admin/categories/update"
 
@@ -16,12 +19,14 @@ Myblog::Application.routes.draw do
   post "admin/articles/new"
   get "admin/categories/index"
   get "admin/comments/index"
+  
 
-
+  match 'articles/view/:id' => 'articles#view'
   match 'admin/categories/delete/:id' => 'admin/categories#delete'
   match 'admin/categories/update/:id' => 'admin/categories#update'
   match 'admin/articles/destroy/:id' => 'admin/articles#destroy'
   match 'admin/articles/edit/:id' => 'admin/articles#edit'
+
 
 
   

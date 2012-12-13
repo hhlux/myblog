@@ -1,21 +1,12 @@
-<div class="center hero-unit">
-  <h1>Welcome to the Sample App</h1>
-
-  <h2>
-    This is the home page for the
-    <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-    sample application.
-  </h2>
-
-  <%= link_to "Sign up now!", '#', class: "btn btn-large btn-primary" %>
+<div>
 
   <% for article in @articles %>
   	<div class="post">
-	    <h2><%= article.title %></h2>
-	    <p><%= article.body %><p>
+      
+	    <h2><%= link_to article.title, "articles/view/" + article.id.to_s %></h2>
+	    <p><%= article.content %><p>
   	</div>
   <% end %>
 
 </div>
 
-<%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>

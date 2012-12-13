@@ -29,7 +29,7 @@
     <div class="controls">
       <% for category in @categories %>
       <label class="radio inline">
-        <input type="radio" name="category_id" id="<%=category.id%>" value="<%=category.id%>">
+        <input type="radio" name="category_id" id="category_<%=category.id%>" value="<%=category.id%>">
         <%=category.name%>
       </label>
       <% end %>
@@ -50,4 +50,17 @@
   </div>
 <%end%>
 
+<script type="text/javascript">
+$(document).ready(function(){
 
+  // 页面初始化时默认选中第一个category
+  $("input:radio[name='category_id']")[0].checked = true;
+
+  // 编辑时，选择文章所属的文章分类
+  var category_id = "<%= @article.category_id %>";
+
+  if (category_id != "") {
+    $("#category_" + category_id)[0].checked = true;
+  }
+});
+</script>

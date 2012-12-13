@@ -47,6 +47,7 @@ class Admin::ArticlesController < ApplicationController
       # 更新操作
       if params[:article][:id] != ""
         article = Article.find(params[:article][:id])
+        article.category = Category.find(params[:category_id])
         article.update_attributes(params[:article])
 
       # 新建操作
