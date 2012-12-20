@@ -14,18 +14,36 @@
     
     <div class="container">
       <div class="row">
+        <!-- 导航栏 -->
+        <div class="navbar navbar-inverse" >
+          <div class="navbar-inner">
+            <a class="brand" href="#">Title</a>
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 文章 -->
         <div class="span8">
           <%= yield %>
           <!--<%= debug(params) if Rails.env.development? %>-->
         </div>
+
+        <!-- 分章分类 -->
+        <% if @categories != nil %>
         <div class="span4">
           <h4>文章分类：</h4>
           <ul>
           <% for category in @categories %>
             <li><%= link_to category.name, "#" %></li>
           <%end%>
+          
           </ul>
         </div>
+        <%end%>
       </div>
     </div>
   </body>

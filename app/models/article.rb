@@ -8,4 +8,8 @@ class Article < ActiveRecord::Base
 
   #accepts_nested_attributes_for :category
 
+  def comments_count
+  	self.comments.count
+  end
+
 end

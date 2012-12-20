@@ -1,21 +1,26 @@
+<!-- 显示文章内容 -->
 <div>
 	<h2><%= @article.title %></h2>
 	<p><%= @article.content %></p>
 </div>
 
 
+
+<!-- 显示评论 -->
+<h4>共<%= @article.comments_count %>条评论</h4>
 <% for comment in @comments %>
 	<p><%= comment.author %></p>
 	<p><%=comment.updated_at %></p>
 	<p><%=comment.content %></p>
 <% end %>
 
+<!-- 发表评论 -->
 <div>
-	<h3 id="reply-title">发表评论 
+	<h4>发表评论 
 		<small>
 			<a rel="nofollow" id="cancel-comment-reply-link" href="/what-are-the-most-common-lies-told-by-programmers/#respond" style="display:none;">取消回复</a>
 		</small>
-	</h3>
+	</h4>
 	
 	<%= form_tag("/comments/create", :method => "post") do |f| %>
 		<p class="comment-notes">电子邮件地址不会被公开。
