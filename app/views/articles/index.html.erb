@@ -5,6 +5,7 @@
       
 	    <h2><%= link_to article.title, "articles/view/" + article.id.to_s %></h2>
 	    <p><%= article.content %><p>
+	    <p><%= article.updated_at %></p>
   	</div>
   <% end %>
 

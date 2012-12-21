@@ -36,7 +36,7 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def delete
-    category = Category.destroy(params[:id])
+    category = Category.find(params[:id])
     
     if category.destroy
       flash[:notice] = "Delete category successful"

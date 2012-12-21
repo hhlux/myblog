@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
 
-	layout "administration", :except => [:login, :logout]
+	layout "administration"
 
 	def login
 

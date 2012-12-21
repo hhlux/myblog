@@ -4,14 +4,13 @@
 	<p><%= @article.content %></p>
 </div>
 
-
-
 <!-- 显示评论 -->
-<h4>共<%= @article.comments_count %>条评论</h4>
+<br/>
+<h4><%= @article.comments_count %>条评论</h4>
 <% for comment in @comments %>
-	<p><%= comment.author %></p>
-	<p><%=comment.updated_at %></p>
+	<p><%= comment.author %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=comment.updated_at.strftime('%Y-%m-%d %H:%M') %></p>
 	<p><%=comment.content %></p>
+	<hr/>
 <% end %>
 
 <!-- 发表评论 -->

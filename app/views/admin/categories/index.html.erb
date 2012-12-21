@@ -15,7 +15,7 @@
 </div>
 
 <%= form_for(Category.new, :url => "new", :html => { :class => "form-inline"}) do |f| %>
-  <%= f.label '新增文章分类：' %>
+  <label>新增文章分类：</label>
   <%= f.text_field :name, :class => "input-large", :placeholder=>"请输入名称" %>
   <%= f.submit "提交", :class=> "btn btn-primary" %>
 <% end %>

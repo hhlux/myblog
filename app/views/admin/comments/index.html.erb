@@ -1,2 +1,27 @@
-<h1>Admin::Comments#index</h1>
-<p>Find me in app/views/admin/comments/index.html.erb</p>
+<div class='page-header'>
+  <h2>Manage Comments</h2>
+</div>
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>评论人</th>
+        <th>内容</th>
+        <th>文章</th>
+        <th>管理</th>
+      </tr>
+    </thead>
+
+    <tbody>
+ 		<% for comment in @comments %>
+
+ 			<tr>
+ 				<td><%= comment.author %></td>
+ 				<td><%= comment.content %></td>
+ 				<td><%= comment.article.title %></td>
+ 				<td><%= link_to "", "delete/" + comment.id.to_s, :confirm => "你确定要删除这个评论？", :class => "icon-trash"%></td>
+ 			</tr>
+
+ 		<% end %>
+    </tbody>
+  </table>
