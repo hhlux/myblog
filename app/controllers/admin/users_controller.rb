@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
 
-	layout "administration"
+	layout "application"
 
 	def login
 
